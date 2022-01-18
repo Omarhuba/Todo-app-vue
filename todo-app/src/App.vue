@@ -9,7 +9,7 @@
     </header>
     <main>
 
-    <TodoList :todos="todos" @removeTodo="removeTodo" /> 
+    <TodoList :todos="todos" @removeTodo="removeTodo" @toggle="toggleDone"/> 
     </main>
     <footer>
       <div class="footer">
@@ -36,17 +36,11 @@ export default {
     return {
       todos: [
         {
-          id: 1, content: 'Köp bananpaj', done: 'false',
+          id: 1, content: 'Köp bananpaj', done: false,
         },
         {
-          id: 2, content: 'Köp bananpaj', done: 'false',
+          id: 2, content: 'Köp bananpaj', done: false,
         },
-        {
-          id: 3, content: 'Köp bananpaj', done: 'false',
-        },
-        {
-          id: 4, content: 'Köp grillkorv', done: 'false',
-        }
       ],
       inputVal: '',
   
@@ -65,6 +59,14 @@ export default {
       console.log(this.todos.id)
       this.todos = this.todos.filter(t => t.id != item.id)
 
+    },
+    toggleDone(item) {
+      console.log(item)
+      if(item.done == false) {
+        return item.done = true;
+      }else {
+        return item.done = false
+      }
     }
 
 
@@ -73,22 +75,26 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-
+<style lang="scss">
+body{
+  background-color: #eee
+}
 .app{
   display:flex;
-  align-items:center
+  justify-content: center;
+  align-items:center;
 }
 #todo{
   display: flex;
-  /* justify-content: center; */
+  justify-content: center; 
   align-items: center;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 100px;
   padding: 2rem;
-  width: 400px;
-  height: 600px;
+  width: 350px;
+  height: 500px;
   border: 2px solid black;
+  background-color: #fff;
 }
 .footer{
   display: flex;
@@ -97,10 +103,16 @@ export default {
   height: 50px;
   input{
     font-size: 1.1rem;
+    text-align: center;
+    padding: 0.7rem;
     
   }
   button{
     font-size: 1.1rem;
+    padding: 0.7rem;
+    background-color: cadetblue;
+    font-weight: 800;
+    color: #fff
   }
 
 }
