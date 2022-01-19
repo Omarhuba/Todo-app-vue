@@ -8,7 +8,7 @@
         <img src="../assets/delete.svg"  @click="$emit('removeTodo')" class="delete">
       </span>
   </div>
-</template>')'
+</template>'
 
 <script>
 export default {
